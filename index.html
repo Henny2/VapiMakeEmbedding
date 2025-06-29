@@ -6,11 +6,16 @@
 
 <body>
   <h1>How was your day? Talk to your agent and leave your diary entry.</h1>
+  <!-- Inline Vapi Agent Button -->
+  <div id="vapi-inline-container"></div>
   <script>
     var vapiInstance = null;
     const assistant = "3e53565e-cd7c-4525-92b7-e0773c7978ca"; // Replace with your assistant ID
     const apiKey = "bd817707-63f1-431c-82f1-9b2aef1fb8cf"; // Replace with your Public API key
-    const buttonConfig = {}; // Customize as needed
+    const buttonConfig = {
+      position: "inline",
+      parentElement: "#vapi-inline-container"
+    };
 
     (function (d, t) {
       var g = document.createElement(t),
@@ -30,7 +35,11 @@
       };
     })(document, "script");
   </script>
+</body>
 
 </body>
+<footer>
+
+</footer>
 
 </html>
