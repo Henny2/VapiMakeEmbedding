@@ -1,45 +1,38 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <title>Vapi Simple Floating Button</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 
 <body>
   <h1>How was your day? Talk to your agent and leave your diary entry.</h1>
-  <!-- Inline Vapi Agent Button -->
-  <div id="vapi-inline-container"></div>
+
+  <!-- Vapi SDK -->
+  <script src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js"></script>
   <script>
-    var vapiInstance = null;
-    const assistant = "3e53565e-cd7c-4525-92b7-e0773c7978ca"; // Replace with your assistant ID
-    const apiKey = "bd817707-63f1-431c-82f1-9b2aef1fb8cf"; // Replace with your Public API key
-    const buttonConfig = {
-      position: "inline",
-      parentElement: "#vapi-inline-container"
-    };
-
-    (function (d, t) {
-      var g = document.createElement(t),
-        s = d.getElementsByTagName(t)[0];
-      g.src =
-        "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-      g.defer = true;
-      g.async = true;
-      s.parentNode.insertBefore(g, s);
-
-      g.onload = function () {
-        vapiInstance = window.vapiSDK.run({
-          apiKey: apiKey, // mandatory
-          assistant: assistant, // mandatory
-          config: buttonConfig, // optional
+    const VAPI_PUBLIC_KEY = 'bd817707-63f1-431c-82f1-9b2aef1fb8cf';
+    const VAPI_ASSISTANT_ID = '3e53565e-cd7c-4525-92b7-e0773c7978ca';
+    window.addEventListener('DOMContentLoaded', function () {
+      if (window.vapiSDK) {
+        window.vapiSDK.run({
+          apiKey: VAPI_PUBLIC_KEY,
+          assistant: VAPI_ASSISTANT_ID
         });
-      };
-    })(document, "script");
+      } else {
+        // fallback if SDK loads after DOMContentLoaded
+        window.addEventListener('vapiSDKLoaded', function () {
+          window.vapiSDK.run({
+            apiKey: VAPI_PUBLIC_KEY,
+            assistant: VAPI_ASSISTANT_ID
+          });
+        });
+      }
+    });
   </script>
 </body>
-
-</body>
-<footer>
-
-</footer>
 
 </html>
