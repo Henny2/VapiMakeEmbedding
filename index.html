@@ -1,17 +1,36 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 
 <body>
-    <h1>How was your day? Talk to your agent and leave your diary entry.</h1>
-    <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/dist/web.js"></script>
-    <script>
-        VapiWeb.init({
-            agentId: '3e53565e-cd7c-4525-92b7-e0773c7978ca', // Replace with your actual agent ID
-            theme: 'light'
+  <h1>How was your day? Talk to your agent and leave your diary entry.</h1>
+  <script>
+    var vapiInstance = null;
+    const assistant = "3e53565e-cd7c-4525-92b7-e0773c7978ca"; // Replace with your assistant ID
+    const apiKey = "bd817707-63f1-431c-82f1-9b2aef1fb8cf"; // Replace with your Public API key
+    const buttonConfig = {}; // Customize as needed
+
+    (function (d, t) {
+      var g = document.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+      g.src =
+        "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+      g.defer = true;
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+
+      g.onload = function () {
+        vapiInstance = window.vapiSDK.run({
+          apiKey: apiKey, // mandatory
+          assistant: assistant, // mandatory
+          config: buttonConfig, // optional
         });
-    </script>
+      };
+    })(document, "script");
+  </script>
+
 </body>
+
 </html>
